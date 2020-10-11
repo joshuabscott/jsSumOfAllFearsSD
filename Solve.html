@@ -84,6 +84,39 @@
 
         <hr />
 
+        <!-- Main Content Starts -->
+        <section class="container-fluid main-container container-home p-0 revealator-slideup revealator-once revealator-delay1">
+            <div class="color-block d-none d-lg-block"></div>
+            <div class="row home-details-container align-items-center"></div>
+            <div class="col-lg-4 bg position-fixed d-none d-lg-block"> </div>
+            <div class="col-12 col-lg-8 offset-lg-4 home-details text-left text-sm-center text-lg-left">
+                <div>
+                    <img src="" title="https://www.deviantart.com/ragnaruz" class="img-fluid main-img-mobile d-none d-sm-block d-lg-none" alt="my picture" />
+                    <h6 class="text-uppercase open-sans-font mb-0 d-block d-sm-none d-lg-block">Mini Project</h6>
+                    <h1 class="text-uppercase poppins-font"><span>Sum </span>of All Fears</h1>
+                    <p class="open-sans-font text-dark h4"> <span class="h4" id="statusBox"></span></p>
+                    <p class="open-sans-font text-dark h4"> <span id="printBox"></span></p>
+                    <div class="row text-center align-content-center">
+                        <h3 class="text-dark">INPUTS:</h3>
+                        <input class="col" type="number" step="1" id="userInput1" value="0" />
+                        <input class="col" type="number" step="1" id="userInput2" value="0" />
+                        <input class="col" type="number" step="1" id="userInput3" value="0" />
+                        <input class="col" type="number" step="1" id="userInput4" value="0" />
+                    </div>
+                    <div class="row p-4 offset-1">
+                        <h3 class="text-dark">SUM:</h3>
+                        <input class="col-2" type="number" step="1" id="k" value="0" />
+                    </div>
+                    <div class="row offset-4">
+                        <button class="btn btn-danger" id="button">Launch Sum</button>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </section>
+
         <!-- Footer -->
         <div id="footer">
             <div class="col-lg-12 text-center bg-light text-dark">
@@ -102,7 +135,43 @@
 
         <!-- Sum of All Fears JavaScript -->
         <script>
+            document.getElementById("button").addEventListener('click', () => {
+                let userInput1 = parseInt(document.getElementById("userInput1").value);
+                let userInput2 = parseInt(document.getElementById("userInput2").value);
+                let userInput3 = parseInt(document.getElementById("userInput3").value);
+                let userInput4 = parseInt(document.getElementById("userInput4").value);
+                let userArray = [userInput1, userInput2, userInput3, userInput4];
 
+                let k = parseInt(document.getElementById("k").value);
+
+
+                let sumNumbers = sumNumbersFunction(userArray, k);
+                let sumNumberOne = sumNumbers[0];
+                let sumNumberTwo = sumNumbers[1];
+                document.getElementById('printBox').innerHTML = `${sumNumberOne} + ${sumNumberTwo} = ${k}`;
+
+            })
+
+            function sumNumbersFunction(userArray, k) {
+                var sumNumbers = [];
+                for (let i = 0; i < userArray.length; i++) {
+                    let map1 = userArray.map(x => x + userArray[i]);
+                    let map1includes = map1.includes(k, 0);
+                    if (map1includes == true) {
+                        sumNumbers.push(userArray[i])
+                    }
+                    if (sumNumbers.length != 2) {
+                        document.getElementById('printBox').innerHTML = ``;
+
+
+
+                    } else {
+                        return sumNumbers;
+                    }
+
+                }
+
+            }
         </script>
 
     </div>
